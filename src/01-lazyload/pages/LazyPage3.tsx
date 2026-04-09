@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const LazyPage2 = () => {
+export const LazyPage3 = () => {
   return (
-    <div>LazyPage1</div>
+    <div>LazyPage3</div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const LazyPage1 = () => {
+export const LazyPage2 = () => {
   return (
     <div>LazyPage2</div>
   )
