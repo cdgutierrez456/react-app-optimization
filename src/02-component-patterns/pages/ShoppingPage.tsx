@@ -19,8 +19,8 @@ export const ShoppingPage = () => {
       }}>
         <ProductCard product={product}>
           <ProductCard.Image />
-          {/* <ProductCard.Title />
-          <ProductCard.Buttons /> */}
+          <ProductCard.Title />
+          <ProductCard.Buttons />
         </ProductCard>
       </div>
     </div>
