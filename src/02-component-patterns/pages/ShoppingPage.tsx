@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components'
+import { Product } from '../interfaces/interfaces'
 
 import '../styles/custom-styles.css'
 
@@ -8,7 +10,24 @@ const product = {
   img: '/coffee-mug.png'
 }
 
+const product2 = {
+  id: '2',
+  title: 'Coffe Mug 2 - Card',
+  img: '/coffee-mug2.png'
+}
+
+const products: Product[] = [product, product2]
+
+interface ProductInCart extends Product {
+  count: number
+}
+
 export const ShoppingPage = () => {
+
+  const [shoppingCart, setShoppingCart] = useState<{
+    [key: string]: ProductInCart
+  }>({})
+
   return (
     <div>
       <h1>ShoppingPage</h1>
@@ -18,35 +37,30 @@ export const ShoppingPage = () => {
         flexDirection: 'row',
         flexWrap: 'wrap'
       }}>
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            className='bg-dark text-white'
+          >
+            <ProductImage className='custom-image' />
+            <ProductTitle className='text-bold' />
+            <ProductButtons className='custom-buttons' />
+          </ProductCard>
+        ))}
+      </div>
+      <div className="shopping-cart">
         <ProductCard
-          product={product}
+          product={product2}
           className='bg-dark text-white'
-        >
-          <ProductCard.Image className='custom-image' />
-          <ProductCard.Title className='text-bold' />
-          <ProductCard.Buttons className='custom-buttons' />
-        </ProductCard>
-
-        <ProductCard
-          product={product}
-          className='bg-dark text-white'
+          style={{
+            width: '100px'
+          }}
         >
           <ProductImage className='custom-image' />
           <ProductTitle className='text-bold' />
           <ProductButtons className='custom-buttons' />
         </ProductCard>
-
-        <ProductCard
-          product={product}
-          style={{
-            backgroundColor: '#70D1F8'
-          }}
-        >
-          <ProductImage />
-          <ProductTitle />
-          <ProductButtons />
-        </ProductCard>
-
       </div>
     </div>
   )
