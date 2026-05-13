@@ -31,19 +31,18 @@ export const ShoppingPage = () => {
   const onProductCountChange = ({ count, product }: { count: number, product: Product }) => {
     setShoppingCart(oldShoppingCart => {
 
-      if (count === 0) {
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart
-
-        return rest;
-      }
-
-      return {
-        ...oldShoppingCart,
-        [product.id]: {
-          ...product,
-          count
+      const productInCart: ProductInCart = oldShoppingCart[product.id] || { ...product, count: 0 }
+      if (Math.max(productInCart.count + count, 0) > 0) {
+        productInCart.count += count
+        return {
+          ...oldShoppingCart,
+          [product.id]: productInCart
         }
       }
+
+      // Eliminar el producto
+      const { [product.id]: toDelete, ...rest } = oldShoppingCart
+      return { ...rest }
     })
   }
 
